@@ -1,12 +1,12 @@
 {
   "name": "unbzip2-stream",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "streaming unbzip2 implementatio in pure javascript for node and browsers",
   "scripts": {
     "browser-test": "browserify -t brfs test/simple.js | tape-run2 -b phantomjs",
     "test": "node test/simple.js"
   },
-  "author": "Jan Bölsche <jan@lagomorph.de>", 
+  "author": "Jan Bölsche <jan@lagomorph.de>",
   "repository": {
     "url": "git@github.com:regular/unbzip2-stream.git",
     "type": "git"
