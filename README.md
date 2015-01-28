@@ -1,11 +1,13 @@
 [![npm version](https://badge.fury.io/js/unbzip2-stream.svg)](http://badge.fury.io/js/unbzip2-stream)
 unzip2-stream
 ===
+streaming bzip2 compresser in pure JS for Node and browserify.
+
 Wraps [jvrousseau/bzip2.js](https://github.com/jvrousseau/bzip2.js) into a through stream. I refactored the pre-existing streaming code (formerly in node-test.js) and turned it into the module's interface.
 
 Buffers
 ---
-The stream emits instances of [feross/buffer](https://github.com/feross/buffer) instead of raw Uint8Arrays to have a consistant API across browsers and Node.
+When browserified, the stream emits instances of [feross/buffer](https://github.com/feross/buffer) instead of raw Uint8Arrays to have a consistant API across browsers and Node.
 
 Usage
 ---
