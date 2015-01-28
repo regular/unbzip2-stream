@@ -1,9 +1,15 @@
 {
   "name": "unbzip2-stream",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "streaming unbzip2 implementatio in pure javascript for node and browsers",
   "keywords": [
-    "bzip", "bzip2", "bz2", "stream", "streaming", "decompress", "through"
+    "bzip",
+    "bzip2",
+    "bz2",
+    "stream",
+    "streaming",
+    "decompress",
+    "through"
   ],
   "scripts": {
     "browser-test": "browserify -t brfs test/simple.js | tape-run2 -b phantomjs",
