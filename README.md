@@ -1,3 +1,4 @@
+[![npm version](https://badge.fury.io/js/unbzip2-stream.svg)](http://badge.fury.io/js/unbzip2-stream)
 unzip2-stream
 ===
 Wraps [jvrousseau/bzip2.js](https://github.com/jvrousseau/bzip2.js) into a through stream. I refactored the pre-existing streaming code (formerly in node-test.js) and turned it into the module's interface.
