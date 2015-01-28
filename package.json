@@ -2,17 +2,20 @@
   "name": "unbzip2-stream",
   "version": "1.0.1",
   "description": "streaming unbzip2 implementatio in pure javascript for node and browsers",
+  "keywords": [
+    "bzip", "bzip2", "bz2", "stream", "streaming", "decompress", "through"
+  ],
   "scripts": {
     "browser-test": "browserify -t brfs test/simple.js | tape-run2 -b phantomjs",
     "test": "node test/simple.js"
   },
   "author": "Jan Bölsche <jan@lagomorph.de>",
   "repository": {
-    "url": "git@github.com:regular/unbzip2-stream.git",
+    "url": "https://github.com/regular/unbzip2-stream.git",
     "type": "git"
   },
   "bugs": {
-    "url": "git@github.com:regular/unbzip2-stream/issues"
+    "url": "https://github.com/regular/unbzip2-stream/issues"
   },
   "main": "index.js",
   "devDependencies": {
@@ -26,5 +29,6 @@
     "through": "^2.3.6",
     "buffer": "^3.0.1",
     "bzip2": "^0.1.1"
-  }
+  },
+  "license": "MIT"
 }
