@@ -31,3 +31,7 @@ To run tests in PhantomJS
 
     npm run browser-test
 
+To run a test in chrome (if installed) that downloads and decompresses a linux kernel
+(open the browser's console to see the output)
+
+    npm run download-test
