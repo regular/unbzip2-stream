@@ -1,9 +1,8 @@
 [![npm version](https://badge.fury.io/js/unbzip2-stream.svg)](http://badge.fury.io/js/unbzip2-stream)
-unzip2-stream
+
+unbzip2-stream
 ===
 streaming bzip2 compresser in pure JS for Node and browserify.
-
-Wraps [jvrousseau/bzip2.js](https://github.com/jvrousseau/bzip2.js) into a through stream. I refactored the pre-existing streaming code (formerly in node-test.js) and turned it into the module's interface.
 
 Buffers
 ---
@@ -34,4 +33,6 @@ To run tests in PhantomJS
 To run a test in chrome (if installed) that downloads and decompresses a linux kernel
 (open the browser's console to see the output)
 
+    curl http://s-macke.github.io/jor1k/bin/vmlinux.bin.bz2 > test/fixtures/vmlinux.bin.bz2
+    bzip2 -d < test/fixtures/vmlinux.bin.bz2 > test/fixtures/vmlinux.bin
     npm run download-test

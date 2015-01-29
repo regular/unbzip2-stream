@@ -1,6 +1,6 @@
 {
   "name": "unbzip2-stream",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "streaming unbzip2 implementatio in pure javascript for node and browsers",
   "keywords": [
     "bzip",
@@ -12,6 +12,7 @@
     "through"
   ],
   "scripts": {
+    "prepublish": "rm test/fixtures/vmlinux.bin* ||  exit 0",
     "browser-test": "browserify -t brfs test/simple.js | tape-run2 -b phantomjs",
     "download-test": "beefy test/browser/long.js --open -- -t brfs",
     "test": "tape test/*.js"
