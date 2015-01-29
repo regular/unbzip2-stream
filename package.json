@@ -1,6 +1,6 @@
 {
   "name": "unbzip2-stream",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "streaming unbzip2 implementatio in pure javascript for node and browsers",
   "keywords": [
     "bzip",
