@@ -33,3 +33,22 @@ test('should emit error when stream is broken', function(t) {
     unbz2.end();
 
 });
+
+test('should emit error when stream is broken in a different way?', function(t) {
+    t.plan(1);
+    // this is the smallest truncated file I found that reproduced the bug, but
+    // longer files will also work.
+    var truncated = 'test/fixtures/truncated.bz2';
+
+    fs.createReadStream(truncated).
+        on('error', function (err) {
+            t.ok(false, "The file stream itself should not be failing.");
+        }).
+        pipe(unbzip2Stream()).
+        on('error', function (err) {
+            t.ok(true, err);
+        }).
+        on('close', function (err) {
+            t.ok(false, "Should not reach end of stream without failing.");
+        });
+});
