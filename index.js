@@ -53,14 +53,10 @@ function unbzip2Stream() {
                 }
             });
         } catch(e) {
-            if (e instanceof bz2.Bzip2Error) {
-                //console.error(e);
-                stream.emit('error', e);
-                broken = true;
-                return false;
-            } else {
-                throw e;
-            }
+            //console.error(e);
+            stream.emit('error', e);
+            broken = true;
+            return false;
         }
     }
 
