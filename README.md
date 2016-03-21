@@ -30,9 +30,9 @@ To run tests in PhantomJS
 
     npm run browser-test
 
-To run a test in chrome (if installed) that downloads and decompresses a linux kernel
+To run a test in chrome (if installed) that downloads and decompresses a large binary file
 (open the browser's console to see the output)
 
-    curl http://s-macke.github.io/jor1k/bin/vmlinux.bin.bz2 > test/fixtures/vmlinux.bin.bz2
-    bzip2 -d < test/fixtures/vmlinux.bin.bz2 > test/fixtures/vmlinux.bin
+    dd if=/dev/urandom of=test/fixtures/vmlinux.bin bs=5m count=2
+    cat test/fixtures/vmlinux.bin | bzip2 > test/fixtures/vmlinux.bin.bz2
     npm run download-test
