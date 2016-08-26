@@ -70,7 +70,7 @@ function unbzip2Stream() {
                     return bufferQueue.shift();
                 });
             }
-            while (hasBytes - bitReader.bytesRead + 1 >= (100000 * blockSize || 4)){
+            while (hasBytes - bitReader.bytesRead + 1 >= ((25000 + 100000 * blockSize) || 4)){
                 //console.error('decompressing with', hasBytes - bitReader.bytesRead + 1, 'bytes in buffer');
                 if (!done) done = !decompressAndQueue(this);
                 if (done) break;
