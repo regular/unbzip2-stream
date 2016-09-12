@@ -1,4 +1,4 @@
-var unbzip2Stream = require('../');
+var unbzip2Stream = require('../..');
 var test = require('tape');
 var through = require('through');
 var throughout = require('throughout');

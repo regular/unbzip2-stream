@@ -30,9 +30,19 @@ To run tests in PhantomJS
 
     npm run browser-test
 
-To run a test in chrome (if installed) that downloads and decompresses a large binary file
-(open the browser's console to see the output)
+Additional Tests
+----------------
+There are two more tests that specifically test decompression of a very large file. Because I don't want to include large binary files in this repository, the files are created by running an npm script.
 
-    dd if=/dev/urandom of=test/fixtures/vmlinux.bin bs=5m count=2
-    cat test/fixtures/vmlinux.bin | bzip2 > test/fixtures/vmlinux.bin.bz2
+    npm run prepare-long-test
+
+You can now
+
+    npm run long-test
+
+And to run a test in chrome that downloads and decompresses a large binary file
+
     npm run download-test
+
+Open the browser's console to see the output.
+
