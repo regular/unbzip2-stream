@@ -2,7 +2,7 @@
 
 unbzip2-stream
 ===
-streaming bzip2 compresser in pure JS for Node and browserify.
+streaming bzip2 decompressor in pure JS for Node and browserify.
 
 Buffers
 ---
