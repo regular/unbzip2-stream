@@ -12,6 +12,7 @@
     "through"
   ],
   "scripts": {
+    "publish": "browserify -s unbzip2Stream index.js | uglifyjs >> dist/unbzip2-stream.min.js",
     "prepublish": "rm test/fixtures/vmlinux.bin* || exit 0",
     "browser-test": "browserify -t brfs test/simple.js | tape-run2 -b phantomjs",
     "prepare-long-test": "dd if=/dev/urandom of=test/fixtures/vmlinux.bin bs=50m count=2 && cat test/fixtures/vmlinux.bin | bzip2 > test/fixtures/vmlinux.bin.bz2",
@@ -27,15 +28,17 @@
   "bugs": {
     "url": "https://github.com/regular/unbzip2-stream/issues"
   },
+  "files": ["dist/unbzip2-stream.min.js"],
   "main": "index.js",
   "devDependencies": {
-    "browserify": "^8.1.0",
-    "tape": "^3.4.0",
-    "concat-stream": "^1.4.7",
-    "tape-run2": "^1.0.3",
+    "beefy": "^2.1.2",
     "brfs": "^1.2.0",
+    "browserify": "^8.1.0",
+    "concat-stream": "^1.4.7",
+    "tape": "^3.4.0",
+    "tape-run2": "^1.0.3",
     "throughout": "0.0.0",
-    "beefy": "^2.1.2"
+    "uglify-js": "^3.0.10"
   },
   "dependencies": {
     "through": "^2.3.6",
