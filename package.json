@@ -28,7 +28,8 @@
     "url": "https://github.com/regular/unbzip2-stream/issues"
   },
   "files": [
-    "dist/unbzip2-stream.min.js"
+    "dist/unbzip2-stream.min.js",
+    "lib"
   ],
   "main": "index.js",
   "devDependencies": {
