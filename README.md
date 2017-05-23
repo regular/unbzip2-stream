@@ -20,6 +20,17 @@ fs.createReadStream('./test.bz2').pipe(bz2()).pipe(process.stdout);
 
 Also see [test/browser/download.js](https://github.com/regular/unbzip2-stream/blob/master/test/browser/download.js) for an example of decompressing a file while downloading.
 
+Or Using a <script> tag
+---
+
+```
+<script src="https://npm-cdn.info/unbzip2-stream/dist/unbzip2-stream.min.js">
+<script>
+    var myStream = window.unbzip2Stream();
+    // now pipe stuff through it (see above)
+</script>
+```
+
 Tests
 ---
 To run tests in Node:
