@@ -20,7 +20,6 @@ test('a very large binary file piped into unbzip2-stream results in original fil
         received += data.length;
         buffers.push(data);
     }, function end() {
-        console.log('EMD');
         var expected = fs.readFileSync('test/fixtures/vmlinux.bin');
         t.equal(received, expected.length);
         t.deepEqual(Buffer.concat(buffers), expected);
