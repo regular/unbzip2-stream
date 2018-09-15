@@ -11,6 +11,7 @@ function unbzip2Stream() {
     var broken = false;
     var done = false;
     var bitReader = null;
+    var streamCRC = null;
 
     function decompressBlock(push){
         if(!blockSize){
@@ -26,8 +27,8 @@ function unbzip2Stream() {
                 chunk.push(b);
             };
 
-            var done = bz2.decompress(bitReader, f, buf, bufsize);        
-            if (done) {
+            streamCRC = bz2.decompress(bitReader, f, buf, bufsize, streamCRC);
+            if (streamCRC === null) {
                 push(null);
                 //console.error('done');
                 return false;

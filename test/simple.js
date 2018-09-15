@@ -34,6 +34,23 @@ test('should emit error when stream is broken', function(t) {
 
 });
 
+test('should emit error when crc is broken', function(t) {
+    t.plan(1);
+    var compressed = fs.readFileSync('test/fixtures/brokencrc.bz2');
+    var unbz2 = unbzip2Stream();
+    unbz2.on('error', function(err) {
+        t.ok(true, err.message);
+    });
+    unbz2.pipe( concat(function(data) {
+        var expected = "Hello World!\nHow little you are. now.\n\n";
+        t.ok(false, 'we should not get here');
+    }));
+
+    unbz2.write(compressed);
+    unbz2.end();
+
+});
+
 test('should emit error when stream is broken in a different way?', function(t) {
     t.plan(1);
     // this is the smallest truncated file I found that reproduced the bug, but
