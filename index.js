@@ -29,8 +29,8 @@ function unbzip2Stream() {
 
             streamCRC = bz2.decompress(bitReader, f, buf, bufsize, streamCRC);
             if (streamCRC === null) {
-                push(null);
-                //console.error('done');
+                // reset for next bzip2 header
+                blockSize = 0;
                 return false;
             }else{
                 //console.error('decompressed', chunk.length,'bytes');
@@ -71,16 +71,20 @@ function unbzip2Stream() {
                     return bufferQueue.shift();
                 });
             }
-            while (hasBytes - bitReader.bytesRead + 1 >= ((25000 + 100000 * blockSize) || 4)){
+            while (!broken && hasBytes - bitReader.bytesRead + 1 >= ((25000 + 100000 * blockSize) || 4)){
                 //console.error('decompressing with', hasBytes - bitReader.bytesRead + 1, 'bytes in buffer');
-                if (!done) done = !decompressAndQueue(this);
-                if (done) break;
+                decompressAndQueue(this);
             }
         },
         function end(x) {
             //console.error(x,'last compressing with', hasBytes, 'bytes in buffer');
-            if (!done) {
-                while(decompressAndQueue(this));
+            while (!broken && hasBytes > bitReader.bytesRead){
+                decompressAndQueue(this);
+            }
+            if (!broken) {
+                if (streamCRC !== null)
+                    stream.emit('error', new Error("input stream ended prematurely"));
+                this.queue(null);
             }
         }
     );
