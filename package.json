@@ -12,7 +12,7 @@
     "through"
   ],
   "scripts": {
-    "prepare": "browserify -s unbzip2Stream index.js | uglifyjs >> dist/unbzip2-stream.min.js",
+    "prepare": "mkdir dist && browserify -s unbzip2Stream index.js | uglifyjs >> dist/unbzip2-stream.min.js",
     "browser-test": "browserify -t brfs test/simple.js | tape-run2 -b phantomjs",
     "prepare-long-test": "dd if=/dev/urandom of=test/fixtures/vmlinux.bin bs=50x1024x1024 count=2 && cat test/fixtures/vmlinux.bin | bzip2 > test/fixtures/vmlinux.bin.bz2",
     "long-test": "tape test/extra/long.js",
