@@ -1,30 +1,17 @@
 var unbzip2Stream = require('../..');
 var test = require('tape');
-var through = require('through');
-var throughout = require('throughout');
 var fs = require('fs');
+var streamEqual = require('stream-equal');
 
 test('a very large binary file piped into unbzip2-stream results in original file content', function(t) {
-    t.plan(2);
+    t.plan(1);
     var source = fs.createReadStream('test/fixtures/vmlinux.bin.bz2');
+    var expected = fs.createReadStream('test/fixtures/vmlinux.bin');
     var unbz2 = unbzip2Stream();
-    var received = 0;
-    var buffers = [];
-    
-    unbz2.on('error', function(err) {
-        console.log(err);
-        //t.notOk(err.message);
+    source.pipe(unbz2);
+    streamEqual(expected, unbz2, function(err, equal) {
+        if (err)
+            t.ok(false, err);
+        t.ok(equal, "same file contents");
     });
-    
-    var sink = through( function write(data) {
-        received += data.length;
-        buffers.push(data);
-    }, function end() {
-        var expected = fs.readFileSync('test/fixtures/vmlinux.bin');
-        t.equal(received, expected.length);
-        t.deepEqual(Buffer.concat(buffers), expected);
-        this.queue(null);
-    });
-    source.pipe(throughout(unbz2,sink));
 });
-
