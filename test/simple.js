@@ -69,7 +69,7 @@ test('should emit error when stream is broken in a different way?', function(t) 
     t.plan(1);
     // this is the smallest truncated file I found that reproduced the bug, but
     // longer files will also work.
-    var truncated = fs.readFileSync('test/fixtures/brokencrc.bz2');
+    var truncated = fs.readFileSync('test/fixtures/truncated.bz2');
     var unbz2 = unbzip2Stream();
     unbz2.on('error', function (err) {
         t.ok(true, err);
