@@ -54,6 +54,15 @@ test('should emit error when crc is broken', function(t) {
     unbz2.end(compressed);
 });
 
+test('should emit error when block crc is wrong', function(t) {
+    t.plan(1);
+    var compressed = fs.readFileSync('test/fixtures/brokenblockcrc.bz2');
+    var unbz2 = unbzip2Stream();
+    unbz2.on('error', function(err) { t.pass(err.message); });
+    unbz2.pipe(concat());
+    unbz2.end(compressed);
+});
+
 test('should emit error when stream is broken in a different way?', function(t) {
     t.plan(1);
     // this is the smallest truncated file I found that reproduced the bug, but
