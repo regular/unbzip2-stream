@@ -7,6 +7,7 @@ test('accepts data in both write and end', function(t) {
     t.plan(1);
     var compressed = fs.readFileSync('test/fixtures/text.bz2');
     var unbz2 = unbzip2Stream();
+    unbz2.on('error', function(err) { t.fail(err.message); });
     unbz2.pipe( concat(function(data) {
         var expected = "Hello World!\nHow little you are. now.\n\n";
         t.equal(data.toString('utf-8'), expected);
@@ -19,6 +20,7 @@ test('accepts concatenated bz2 streams', function(t) {
     t.plan(1);
     var compressed = fs.readFileSync('test/fixtures/concatenated.bz2');
     var unbz2 = unbzip2Stream();
+    unbz2.on('error', function(err) { t.fail(err.message); });
     unbz2.pipe( concat(function(data) {
         var expected = "ab\n";
         t.equal(data.toString('utf-8'), expected);
