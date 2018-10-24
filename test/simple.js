@@ -3,7 +3,7 @@ var concat = require('concat-stream');
 var test = require('tape');
 var fs = require('fs');
 
-test('one chunk of compressed data piped into unbzip2-stream results in original file content', function(t) {
+test('accepts data in both write and end', function(t) {
     t.plan(1);
     var compressed = fs.readFileSync('test/fixtures/text.bz2');
     var unbz2 = unbzip2Stream();
@@ -11,13 +11,11 @@ test('one chunk of compressed data piped into unbzip2-stream results in original
         var expected = "Hello World!\nHow little you are. now.\n\n";
         t.equal(data.toString('utf-8'), expected);
     }));
-
-    unbz2.write(compressed);
-    unbz2.end();
-
+    unbz2.write(compressed.subarray(0, 4));
+    unbz2.end(compressed.subarray(4));
 });
 
-test('concatenated bz2 streams piped into unbzip2-stream results in original file content', function(t) {
+test('accepts concatenated bz2 streams', function(t) {
     t.plan(1);
     var compressed = fs.readFileSync('test/fixtures/concatenated.bz2');
     var unbz2 = unbzip2Stream();
@@ -25,10 +23,7 @@ test('concatenated bz2 streams piped into unbzip2-stream results in original fil
         var expected = "ab\n";
         t.equal(data.toString('utf-8'), expected);
     }));
-
-    unbz2.write(compressed);
-    unbz2.end();
-
+    unbz2.end(compressed);
 });
 
 test('should emit error when stream is broken', function(t) {
@@ -42,10 +37,7 @@ test('should emit error when stream is broken', function(t) {
         var expected = "Hello World!\nHow little you are. now.\n\n";
         t.ok(false, 'we should not get here');
     }));
-
-    unbz2.write(compressed);
-    unbz2.end();
-
+    unbz2.end(compressed);
 });
 
 test('should emit error when crc is broken', function(t) {
@@ -59,10 +51,7 @@ test('should emit error when crc is broken', function(t) {
         var expected = "Hello World!\nHow little you are. now.\n\n";
         t.ok(false, 'we should not get here');
     }));
-
-    unbz2.write(compressed);
-    unbz2.end();
-
+    unbz2.end(compressed);
 });
 
 test('should emit error when stream is broken in a different way?', function(t) {
@@ -77,7 +66,5 @@ test('should emit error when stream is broken in a different way?', function(t) 
     unbz2.on('close', function (err) {
         t.ok(false, "Should not reach end of stream without failing.");
     });
-
-    unbz2.write(truncated);
-    unbz2.end();
+    unbz2.end(truncated);
 });
