@@ -5,7 +5,7 @@ test('should return the correct bit pattern across byte boundaries', function(t)
     t.plan(5);
 
     var bi = bitIterator(function() {
-        return new Buffer([0x0f,0x10,0x01,0x80]);
+        return Buffer.from([0x0f,0x10,0x01,0x80]);
     });
 
     t.equal(bi(16), 0x0f10);
@@ -56,7 +56,7 @@ test('aligns to the byte boundary when passed null', function(t) {
     t.plan(3);
 
     var bi = bitIterator(function() {
-        return new Buffer([0x0f,0x10,0x01,0x80]);
+        return Buffer.from([0x0f,0x10,0x01,0x80]);
     });
 
     t.equal(bi(7), 0x7);
