@@ -34,12 +34,12 @@
   ],
   "main": "index.js",
   "devDependencies": {
-    "beefy": "^2.1.2",
+    "beefy": "^2.1.8",
     "brfs": "^1.2.0",
-    "browserify": "^8.1.0",
+    "browserify": "^16.2.3",
     "concat-stream": "^1.4.7",
     "stream-equal": "^1.1.1",
-    "tape": "^3.4.0",
+    "tape": "^4.9.2",
     "tape-run": "^4.0.0",
     "uglify-js": "^3.0.10"
   },
