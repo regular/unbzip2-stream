@@ -44,8 +44,8 @@
     "uglify-js": "^3.0.10"
   },
   "dependencies": {
-    "through": "^2.3.6",
-    "buffer": "^3.0.1"
+    "buffer": "^5.2.1",
+    "through": "^2.3.8"
   },
   "license": "MIT"
 }
