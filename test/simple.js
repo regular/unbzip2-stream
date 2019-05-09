@@ -79,3 +79,13 @@ test('should emit error when stream is broken in a different way?', function(t) 
     });
     unbz2.end(truncated);
 });
+
+test('detects incomplete streams', function(t) {
+    t.plan(1);
+    var incomplete = fs.readFileSync('test/fixtures/nostreamcrc.bz2');
+    var unbz2 = unbzip2Stream();
+    unbz2.on('error', function (err) {
+        t.ok(true, err);
+    });
+    unbz2.end(incomplete);
+});
