@@ -56,6 +56,29 @@ test('should emit error when crc is broken', function(t) {
     unbz2.end(compressed);
 });
 
+test('decompresses empty stream', function(t) {
+    t.plan(1);
+    var compressed = fs.readFileSync('test/fixtures/empty.bz2');
+    var unbz2 = unbzip2Stream();
+    unbz2.on('error', function(err) { t.fail(err.message); });
+    unbz2.pipe( concat(function(data) {
+        var expected = "";
+        t.equal(data.toString('utf-8'), expected);
+    }));
+    unbz2.end(compressed);
+});
+
+test('decompresses empty input', function(t) {
+    t.plan(1);
+    var unbz2 = unbzip2Stream();
+    unbz2.on('error', function(err) { t.fail(err.message); });
+    unbz2.pipe( concat(function(data) {
+        var expected = "";
+        t.equal(data.toString('utf-8'), expected);
+    }));
+    unbz2.end();
+});
+
 test('should emit error when block crc is wrong', function(t) {
     t.plan(1);
     var compressed = fs.readFileSync('test/fixtures/brokenblockcrc.bz2');
