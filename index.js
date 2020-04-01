@@ -17,6 +17,7 @@ function unbzip2Stream() {
         if(!blockSize){
             blockSize = bz2.header(bitReader);
             //console.error("got header of", blockSize);
+            streamCRC = 0;
             return true;
         }else{
             var bufsize = 100000 * blockSize;
@@ -78,7 +79,7 @@ function unbzip2Stream() {
         },
         function end(x) {
             //console.error(x,'last compressing with', hasBytes, 'bytes in buffer');
-            while (!broken && hasBytes > bitReader.bytesRead){
+            while (!broken && bitReader && hasBytes > bitReader.bytesRead){
                 decompressAndQueue(this);
             }
             if (!broken) {
