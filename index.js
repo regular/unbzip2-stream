@@ -83,7 +83,7 @@ function unbzip2Stream() {
             }
             if (!broken) {
                 if (streamCRC !== null)
-                    stream.emit('error', new Error("input stream ended prematurely"));
+                    this.emit('error', new Error("input stream ended prematurely"));
                 this.queue(null);
             }
         }
