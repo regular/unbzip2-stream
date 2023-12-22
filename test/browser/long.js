@@ -1,6 +1,6 @@
 var http = require('http');
 var unbzip2Stream = require('../../');
-var through = require('through');
+var through = require('@ljharb/through');
 var concat = require('concat-stream');
 var test = require('tape');
 var fs = require('fs');

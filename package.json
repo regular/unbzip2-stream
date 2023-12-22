@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "buffer": "^5.2.1",
-    "through": "^2.3.8"
+    "@ljharb/through": "^2.3.8"
   },
   "license": "MIT"
 }
