@@ -1,4 +1,4 @@
-var through = require('through');
+var through = require('@ljharb/through');
 var bz2 = require('./lib/bzip2');
 var bitIterator = require('./lib/bit_iterator');
 
