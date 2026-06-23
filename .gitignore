@@ -1,4 +1,4 @@
-node_modules
+node_modules/
 test/fixtures/vmlinux.bin*
 npm-debug.log
 dist/

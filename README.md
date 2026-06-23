@@ -1,59 +1,53 @@
-[![npm version](https://badge.fury.io/js/unbzip2-stream.svg)](http://badge.fury.io/js/unbzip2-stream)
+# unbzip2-stream
 
-unbzip2-stream
-===
 streaming bzip2 decompressor in pure JS for Node and browserify.
 
-Buffers
----
-When browserified, the stream emits instances of [feross/buffer](https://github.com/feross/buffer) instead of raw Uint8Arrays to have a consistant API across browsers and Node.
+## Usage
 
-Usage
----
-``` js
-var bz2 = require('unbzip2-stream');
-var fs = require('fs');
+```js
+import bz2 from "unbzip2-stream";
+import fs from "node:fs";
 
 // decompress test.bz2 and output the result
-fs.createReadStream('./test.bz2').pipe(bz2()).pipe(process.stdout);
+fs.createReadStream("./test.bz2").pipe(bz2()).pipe(process.stdout);
 ```
 
-Also see [test/browser/download.js](https://github.com/regular/unbzip2-stream/blob/master/test/browser/download.js) for an example of decompressing a file while downloading.
+Also see [tests/browser/download.js](./tests/browser/download.test.js) for an example of decompressing a file while downloading.
 
-Or, using a &lt;script&gt; tag
----
+## Or, using a `<script>` tag
 
-```
-<script src="https://npm-cdn.info/unbzip2-stream/dist/unbzip2-stream.min.js"></script>
-<script>
-    var myStream = window.unbzip2Stream();
-    // now pipe stuff through it (see above)
+```html
+<script type="module">
+  import unbzip2Stream from "https://esm.sh/unbzip2-stream@2.0.0";
+  const myStream = unbzip2Stream();
+  // now pipe stuff through it (see above)
 </script>
 ```
 
-Tests
----
+## Tests
+
 To run tests in Node:
 
-    npm run test
+```bash
+npm run test
+```
 
-To run tests in PhantomJS
+To run browser tests
 
-    npm run browser-test
+```bash
+npm run browser-test
+```
 
-Additional Tests
-----------------
+## Additional Tests
+
 There are two more tests that specifically test decompression of a very large file. Because I don't want to include large binary files in this repository, the files are created by running an npm script.
 
-    npm run prepare-long-test
+```bash
+npm run prepare-long-test
+```
 
 You can now
 
-    npm run long-test
-
-And to run a test in chrome that downloads and decompresses a large binary file
-
-    npm run download-test
-
-Open the browser's console to see the output.
-
+```bash
+npm run long-test
+```
